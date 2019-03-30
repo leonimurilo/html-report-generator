@@ -3,8 +3,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ./server/app.js",
-    "start:dev": "nodemon ./server/app.js",
+    "start": "babel-node ./server/app.js",
+    "start:dev": "nodemon --exec babel-node ./server/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint \"**/*.js\""
   },
@@ -20,10 +20,17 @@
     "express": "^4.16.4",
     "log4js": "^4.0.0",
     "morgan": "^1.9.1",
-    "nodemon": "^1.18.9"
+    "node-sass": "^4.11.0",
+    "nodemon": "^1.18.9",
+    "pug": "^2.0.3",
+    "puppeteer": "^1.14.0"
   },
   "engines": {
     "node": ">=8.9.0",
     "npm": ">=5.5.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1"
   }
 }
