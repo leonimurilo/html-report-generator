@@ -11,6 +11,8 @@
   "dependencies": {
     "@babel/node": "^7.2.2",
     "body-parser": "^1.18.3",
+    "chart.js": "^2.8.0",
+    "chartjs-node": "^1.7.1",
     "compression": "^1.7.3",
     "config": "^3.0.1",
     "cors": "^2.8.5",
