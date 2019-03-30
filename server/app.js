@@ -1,7 +1,7 @@
 process.env.NODE_CONFIG_DIR = 'server/config';
 
-const config = require('config');
-const log4js = require('log4js');
+// const config = require('config');
+// const log4js = require('log4js');
 const express = require('express');
 const morgan = require('morgan');
 const http = require('http');
