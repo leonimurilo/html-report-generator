@@ -95,7 +95,7 @@ module.exports = {
     await chartNode.drawChart(chartJsOptions);
     const buffer = await chartNode.getImageBuffer('image/jpg');
 
-    await chartNode.writeImageToFile('image/png', './testimage.png');
+    // await chartNode.writeImageToFile('image/png', './testimage.png');
 
     if (options.htmlTemplatePath) {
       renderedTemplate = pug.renderFile(options.htmlTemplatePath, {
