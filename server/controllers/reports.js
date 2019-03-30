@@ -72,9 +72,17 @@ module.exports = {
       },
       options: {
         responsive: false,
-        width: 400,
-        height: 400,
         animation: false,
+        chartArea: {
+          backgroundColor: '#fff',
+        },
+        plugins: {
+          beforeDraw: (chart) => {
+            const { ctx } = chart.chart;
+            ctx.fillStyle = 'white';
+            ctx.fillRect(0, 0, chart.chart.width, chart.chart.height);
+          }
+        },
         scales: {
           yAxes: [{
             ticks: {
@@ -82,24 +90,17 @@ module.exports = {
             }
           }]
         },
-        tooltips: {
-          mode: 'label'
-        }
       }
     };
-    await chartNode.drawChart({
-      options: chartJsOptions
-    });
-    const buffer = await chartNode.getImageBuffer('image/png');
+    await chartNode.drawChart(chartJsOptions);
+    const buffer = await chartNode.getImageBuffer('image/jpg');
 
-    chartNode.writeImageToFile('image/png', './testimage.png');
-
-    console.log('buffer', buffer);
+    await chartNode.writeImageToFile('image/png', './testimage.png');
 
     if (options.htmlTemplatePath) {
       renderedTemplate = pug.renderFile(options.htmlTemplatePath, {
         ...htmlTemplateOptions,
-        buffer,
+        buffer: buffer.toString('base64'),
         name: 'oiii'
       });
     } else {
@@ -109,11 +110,13 @@ module.exports = {
     // Make puppeteer render the HTML from data buffer
     await page.setContent(renderedTemplate);
 
+    // console.log('wwwww', await page.content());
+
     // await page.emulateMedia('screen');
     const pdfBuffer = await page.pdf({
       ...options.pdfOptions
     });
-    // const pdfBuffer = await page.screenshot({ path: 'screenshot.png' });
+    // await page.screenshot({ path: 'screenshot.png' });
 
     await browser.close();
 
