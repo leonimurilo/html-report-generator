@@ -13,7 +13,13 @@ const defaultOptions = {
   pdfOptions: {
     path: 'pdf-file.pdf',
     format: 'A4',
-    printBackground: true
+    printBackground: true,
+    displayHeaderFooter: true,
+    headerTemplate: '<div></div>',
+    footerTemplate: '<div id="footer-template" style="font-size:10px !important; color:#808080; padding-left:10px"> Page <span class="pageNumber" style="margin-left: auto;"></span> <span> of </span> <span class="totalPages"></span> </div>',
+    margin: {
+      bottom: '50px',
+    },
   },
   puppeteerOptions: {
     // ignoreDefaultArgs: ['--disable-gpu']

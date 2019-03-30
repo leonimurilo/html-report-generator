@@ -2,21 +2,21 @@ $blue: #0084ff;
 $blue-darker: darken($blue, 5);
 
 body {
-  background: #20262E;
+  background: #fff;
   padding: 20px;
   font-family: Helvetica;
 }
 
 #banner-message {
-  background: #e0e0e0;
-  border-radius: 4px;
+  // background: #e0e0e0;
+  // border-radius: 4px;
   padding: 20px;
   font-size: 25px;
   text-align: center;
   transition: all 0.2s;
   margin: 0 auto;
   // width: 300px;
-  // height: 9000px;
+  height: 9000px;
 
   button {
     background: $blue-darker;
