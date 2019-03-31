@@ -2,10 +2,19 @@
 style(type="text/css") !{compiledStyle}
 
 div#main
-  div.component
-    p Weather report of Uganda, #{currentDate}
+  div.section.section--main
+    h1.title Weather report of Uganda
+    h2.subtitle Generated on #{currentDate}
 
-  each componentBuffer in components
-    div.component
-      img(src=`data:image/jpg;base64,${componentBuffer}`)
+  each componentDefinition in components
+    div.section
+      div.component
+        div.header
+          p.component__title #{componentDefinition.title}
+        img(src=`data:image/png;base64,${componentDefinition.buffer}`).component__img
+        div.component__body
+          div.component__details
+            p #{componentDefinition.description}
+
+
 

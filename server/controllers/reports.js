@@ -22,7 +22,6 @@ const defaultOptions = {
     footerTemplate: '<div id="footer-template" style="font-size:10px !important; color:#808080; padding-left:10px"> Page <span class="pageNumber" style="margin-left: auto;"></span><span> of </span> <span class="totalPages"></span> </div>',
     margin: {
       bottom: '50px',
-      top: '20px'
     },
   },
   puppeteerOptions: {
@@ -105,13 +104,30 @@ module.exports = {
       }
     };
     await chartNode.drawChart(chartJsOptions);
-    const buffer = await chartNode.getImageBuffer('image/jpg');
+    const buffer = await chartNode.getImageBuffer('image/png');
 
     // ===== render html template passing the chart as argument =====
     if (options.htmlTemplatePath) {
       renderedTemplate = pug.renderFile(options.htmlTemplatePath, {
         ...htmlTemplateOptions,
-        components: [buffer.toString('base64'), buffer.toString('base64')],
+        components: [
+          {
+            buffer: buffer.toString('base64'),
+            title: 'Item 1',
+            description: `
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur fringilla mi tortor, id porta nisl venenatis vitae. Nulla pulvinar varius neque, eget congue nunc posuere quis. Donec eu lacinia purus, vitae fermentum quam. Proin id lobortis augue, eu tempor diam. Curabitur lacinia elit in mi faucibus, at condimentum ex feugiat. Praesent in arcu porta, lacinia tellus vitae, venenatis felis. In at blandit augue. Quisque ut ligula ex.
+
+Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc volutpat, ligula id euismod efficitur, mauris justo bibendum magna, posuere porttitor velit odio in ex. Etiam congue scelerisque suscipit. Nullam gravida, justo a ullamcorper fringilla, augue magna vehicula eros, eu aliquet ex leo nec quam. Donec aliquet libero quis tellus venenatis tristique. Proin at justo erat. Quisque gravida fermentum justo at rhoncus. Phasellus in mattis neque.
+
+Aenean semper mi sit amet nunc egestas mollis. In ornare maximus mi, id posuere est viverra vel. Praesent nec mattis ipsum. Pellentesque posuere enim et convallis facilisis. Pellentesque lobortis lorem eget rutrum auctor. Pellentesque in dignissim metus. Aliquam sit amet diam id lacus hendrerit dapibus. Nam non tellus sagittis, scelerisque dolor in, iaculis elit. Quisque lacus arcu, molestie id egestas vel, faucibus ut risus.
+
+In tempor nulla eu semper sagittis. Proin nulla nisl, vestibulum sed ligula eget, dictum congue libero. Ut scelerisque dignissim odio, in pellentesque elit facilisis sodales. Pellentesque nibh dolor, condimentum vel ipsum vel, aliquam congue est. Nulla ultricies nunc id ex iaculis efficitur. Proin convallis finibus lacinia. Ut ut sem et nunc congue accumsan. Fusce euismod, massa non cursus sollicitudin, libero velit fermentum quam, eu malesuada purus orci sit amet elit. Morbi tristique augue vel est vestibulum, vitae malesuada odio tincidunt. Quisque in lectus sit amet metus tincidunt hendrerit. Sed eget rutrum metus.`
+          },
+          {
+            buffer: buffer.toString('base64'),
+            title: 'Item 2'
+          }
+        ],
         currentDate: moment().format(options.dateFormat)
       });
     } else {
