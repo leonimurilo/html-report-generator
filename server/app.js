@@ -5,6 +5,7 @@ process.env.NODE_CONFIG_DIR = 'server/config';
 const express = require('express');
 const morgan = require('morgan');
 const http = require('http');
+import bodyParser from 'body-parser';
 const cors = require('cors');
 const router = require('./router');
 
@@ -15,6 +16,8 @@ const app = express();
 
 // allow cors
 app.use(cors());
+
+app.use(bodyParser.json())
 
 app.use(morgan('combined'));
 

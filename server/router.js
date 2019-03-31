@@ -6,13 +6,13 @@ module.exports = (app) => {
   // However I am following the instructions
   app.get('/', (req, res) => res.status(200).send({ ok: true }));
   app.post('/api/v1/report', (req, res) => {
-    return reports.queue(req.body.components)
-    .then(() => {
-      return res.status(200).send({ message: 'success' });
+    return reports.queue(req.body)
+    .then(info => {
+      return res.status(200).send({ message: 'success', ...info });
     })
     .catch(error => {
       console.error(error);
-      res.status(500).send(error);
+      return res.status(500).send({ error: error.message });
     });
   });
 };

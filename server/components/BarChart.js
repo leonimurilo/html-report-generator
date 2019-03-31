@@ -6,10 +6,10 @@ const defaultCanvasSize = {
   height: 600,
 };
 
-const barChart = async (canvasSize = defaultCanvasSize, data) => {
+const barChart = async (type, data, canvasSize = defaultCanvasSize) => {
   const chartNode = new ChartjsNode(canvasSize.width, canvasSize.height);
 
-  await chartNode.drawChart({ type: 'bar', data, options: chartOptions });
+  await chartNode.drawChart({ type, data, options: chartOptions });
 
   // asynchronously returns the image buffer
   return chartNode.getImageBuffer('image/png');
