@@ -1,4 +1,5 @@
 import * as pug from 'pug';
+import moment from 'moment';
 import ChartjsNode from 'chartjs-node';
 import puppeteer from 'puppeteer';
 import * as sass from 'node-sass';
@@ -12,18 +13,22 @@ const defaultOptions = {
   htmlTemplateOptions: {},
   pdfOptions: {
     path: 'pdf-file.pdf',
-    format: 'A4',
+    // format: 'A4',
+    width: '1240',
+    height: '1754',
     printBackground: true,
     displayHeaderFooter: true,
     headerTemplate: '<div></div>',
     footerTemplate: '<div id="footer-template" style="font-size:10px !important; color:#808080; padding-left:10px"> Page <span class="pageNumber" style="margin-left: auto;"></span><span> of </span> <span class="totalPages"></span> </div>',
     margin: {
       bottom: '50px',
+      top: '20px'
     },
   },
   puppeteerOptions: {
     // ignoreDefaultArgs: ['--disable-gpu']
-  }
+  },
+  dateFormat: 'MMMM Do YYYY, h:mm',
 };
 
 module.exports = {
@@ -49,6 +54,7 @@ module.exports = {
       };
     }
 
+    // ===== Create chart from data =====
     const chartNode = new ChartjsNode(600, 600);
     const chartJsOptions = {
       type: 'bar',
@@ -101,13 +107,12 @@ module.exports = {
     await chartNode.drawChart(chartJsOptions);
     const buffer = await chartNode.getImageBuffer('image/jpg');
 
-    // await chartNode.writeImageToFile('image/png', './testimage.png');
-
+    // ===== render html template passing the chart as argument =====
     if (options.htmlTemplatePath) {
       renderedTemplate = pug.renderFile(options.htmlTemplatePath, {
         ...htmlTemplateOptions,
-        buffer: buffer.toString('base64'),
-        name: 'oiii'
+        components: [buffer.toString('base64'), buffer.toString('base64')],
+        currentDate: moment().format(options.dateFormat)
       });
     } else {
       throw Error('htmlTemplateFn or htmlTemplatePath must be provided');

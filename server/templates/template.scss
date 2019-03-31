@@ -3,27 +3,13 @@ $blue-darker: darken($blue, 5);
 
 body {
   background: #fff;
-  padding: 20px;
   font-family: Helvetica;
+  margin: 0;
 }
 
-#banner-message {
-  // background: #e0e0e0;
-  // border-radius: 4px;
-  padding: 20px;
-  font-size: 25px;
-  text-align: center;
-  transition: all 0.2s;
-  margin: 0 auto;
-  // width: 300px;
-  // height: 9000px;
-
-  button {
-    background: $blue-darker;
-    border: none;
-    border-radius: 5px;
-    padding: 8px 14px;
-    font-size: 15px;
-    color: #fff;
-  }
+.component {
+  height: calc(100% - 40px) ;
+  margin: 20px;
+  box-sizing: border-box;
+  border: 1px solid red;
 }
