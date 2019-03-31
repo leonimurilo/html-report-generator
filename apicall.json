@@ -1,6 +1,6 @@
 {
   "abortWhen": {
-    "unknownComponentType": true
+    "unknownComponentType": false
   },
   "components": [
     {
@@ -12,7 +12,7 @@
         "labels": ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
         "datasets": [{
           "label": "# of Votes",
-          "data": [12, 19, 3, 5, 2, 3],
+          "data": [12, 3, 13, 5, 20, 8],
           "backgroundColor": [
             "rgba(255, 99, 132, 0.2)",
             "rgba(54, 162, 235, 0.2)",
@@ -35,7 +35,7 @@
     },
     {
       "type": "chartjs",
-      "subType": "bar",
+      "subType": "pie",
       "title": "Item 2",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur fringilla mi tortor, id porta nisl venenatis vitae. Nulla pulvinar varius neque, eget congue nunc posuere quis. Donec eu lacinia purus, vitae fermentum quam. Proin id lobortis augue, eu tempor diam. Curabitur lacinia elit in mi faucibus, at condimentum ex feugiat. Praesent in arcu porta, lacinia tellus vitae, venenatis felis. In at blandit augue. Quisque ut ligula ex. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc volutpat, ligula id euismod efficitur, mauris justo bibendum magna, posuere porttitor velit odio in ex. Etiam congue scelerisque suscipit. Nullam gravida, justo a ullamcorper fringilla, augue magna vehicula eros, eu aliquet ex leo nec quam. Donec aliquet libero quis tellus venenatis tristique. Proin at justo erat. Quisque gravida fermentum justo at rhoncus. Phasellus in mattis neque. Aenean semper mi sit amet nunc egestas mollis. In ornare maximus mi, id posuere est viverra vel. Praesent nec mattis ipsum. Pellentesque posuere enim et convallis facilisis. Pellentesque lobortis lorem eget rutrum auctor. Pellentesque in dignissim metus. Aliquam sit amet diam id lacus hendrerit dapibus. Nam non tellus sagittis, scelerisque dolor in, iaculis elit. Quisque lacus arcu, molestie id egestas vel, faucibus ut risus. In tempor nulla eu semper sagittis. Proin nulla nisl, vestibulum sed ligula eget, dictum congue libero. Ut scelerisque dignissim odio, in pellentesque elit facilisis sodales. Pellentesque nibh dolor, condimentum vel ipsum vel, aliquam congue est. Nulla ultricies nunc id ex iaculis efficitur. Proin convallis finibus lacinia. Ut ut sem et nunc congue accumsan. Fusce euismod, massa non cursus sollicitudin, libero velit fermentum quam, eu malesuada purus orci sit amet.",
       "data": {

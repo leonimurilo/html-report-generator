@@ -67,19 +67,20 @@ module.exports = {
 
     const renderedComponents = await Promise.all(components.map((component, index) => {
       if (component.type === 'chartjs') {
-        switch (component.subType) {
-          case 'bar': return anAsyncFunction(component);
-          default:
-            console.log(`Unknown type of chart: ${component.subType}`);
-            if (abortWhen && abortWhen.unknownComponentType) {
-              throw new Error(`Unknown type of chart: ${component.subType}`);
-            }
-            ignoredComponents.push({
-              message: `Unknown type of chart: ${component.subType}`,
-              index
-            });
-            return null;
-        }
+        return anAsyncFunction(component);
+        // switch (component.subType) {
+        //   case 'bar': return anAsyncFunction(component);
+        //   default:
+        //     console.log(`Unknown type of chart: ${component.subType}`);
+        //     if (abortWhen && abortWhen.unknownComponentType) {
+        //       throw new Error(`Unknown type of chart: ${component.subType}`);
+        //     }
+        //     ignoredComponents.push({
+        //       message: `Unknown type of chart: ${component.subType}`,
+        //       index
+        //     });
+        //     return null;
+        // }
       }
       console.log(`Unknown type of component: ${component.type}`);
       if (abortWhen && abortWhen.unknownComponentType) {
