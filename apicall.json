@@ -66,6 +66,8 @@
     {
       "type": "external-source",
       "subType": "satellite-api",
+      "title": "test img",
+      "description": "liquet ex leo nec quam. Donec aliquet libero quis tellus venenatis tristique. Proin at justo erat. Quisque gravida fermentum justo at rhoncus. Phasellus in mattis neque. Aenean semper mi sit amet nunc egestas mollis. In ornare maximus mi, id posuere est viverra vel. Praesent nec mattis ipsum. Pellentesque posuere enim et convallis facilisis. Pellentesque lobortis lorem eget rutrum auctor. Pellentesque in dignissim metus. Aliquam sit amet diam id lacus hendrerit dapibus. Nam non tellus sagittis, scelerisque dolor in, iaculis elit. Quisque lacus arcu, molestie id egestas vel, faucibus ut risus. In tempor nulla eu semper sagittis. Proin nulla nisl, ves",
       "data": {}
     },
     {

@@ -3,7 +3,7 @@ import moment from 'moment';
 import puppeteer from 'puppeteer';
 import * as sass from 'node-sass';
 import * as path from 'path';
-
+import axios from 'axios';
 import BarChart from '../components/BarChart';
 
 const defaultOptions = {
@@ -56,7 +56,7 @@ module.exports = {
       };
     }
 
-    const anAsyncFunction = async (component) => {
+    const asyncGetChart = async (component) => {
       const buffer = await BarChart(component.subType, component.data);
       return {
         buffer: buffer.toString('base64'),
@@ -65,11 +65,21 @@ module.exports = {
       };
     };
 
+    const asyncGetFromSatellite = async (component) => {
+      const response = await axios.get('https://www.thisiscolossal.com/wp-content/uploads/2015/08/google-1.jpg', { responseType: 'arraybuffer' });
+      return {
+        buffer: Buffer.from(response.data, 'binary').toString('base64'),
+        title: component.title,
+        type: 'jpg',
+        description: component.description,
+      };
+    };
+
     const renderedComponents = await Promise.all(components.map((component, index) => {
       if (component.type === 'chartjs') {
-        return anAsyncFunction(component);
+        return asyncGetChart(component);
         // switch (component.subType) {
-        //   case 'bar': return anAsyncFunction(component);
+        //   case 'bar': return asyncGetChart(component);
         //   default:
         //     console.log(`Unknown type of chart: ${component.subType}`);
         //     if (abortWhen && abortWhen.unknownComponentType) {
@@ -82,6 +92,22 @@ module.exports = {
         //     return null;
         // }
       }
+      if (component.type === 'external-source') {
+        switch (component.subType) {
+          case 'satellite-api': return asyncGetFromSatellite(component);
+          default:
+            console.log(`Unknown type of chart: ${component.subType}`);
+            if (abortWhen && abortWhen.unknownComponentType) {
+              throw new Error(`Unknown type of chart: ${component.subType}`);
+            }
+            ignoredComponents.push({
+              message: `Unknown type of chart: ${component.subType}`,
+              index
+            });
+            return null;
+        }
+      }
+
       console.log(`Unknown type of component: ${component.type}`);
       if (abortWhen && abortWhen.unknownComponentType) {
         throw new Error(`Unknown type of chart: ${component.subType}`);

@@ -11,10 +11,11 @@ div#main
       div.component
         div.header
           p.component__title #{componentDefinition.title}
-        img(src=`data:image/png;base64,${componentDefinition.buffer}`).component__img
-        div.component__body
-          div.component__details
-            p #{componentDefinition.description}
+        div.component__img-wrapper
+          img(src=`data:image/${componentDefinition.type || 'png'};base64,${componentDefinition.buffer}`).component__img
+          div.component__body
+            div.component__details
+              p #{componentDefinition.description}
 
 
 

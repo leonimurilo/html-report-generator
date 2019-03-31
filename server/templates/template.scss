@@ -50,11 +50,20 @@ body {
   // border-top: 1px solid black;
   border-bottom: 1px solid lightgray;
 
-  &__img {
-    // box-shadow: 0px 4px 48px -24px rgba(0,0,0,0.36);
+  &__img-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding: 20px;
     border: 1px solid lightgray;
     border-radius: 8px;
-    padding: 20px;
+  }
+
+  &__img {
+    // box-shadow: 0px 4px 48px -24px rgba(0,0,0,0.36);
+    border-radius: 8px;
+    // padding: 20px;
   }
 
   &__header {
@@ -64,6 +73,11 @@ body {
 
   &__title {
     font-size: 24px;
+  }
+
+  &__body {
+    margin-top: 16px;
+    padding: 8px;
   }
 
   &__details {
