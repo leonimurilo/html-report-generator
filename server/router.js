@@ -6,7 +6,7 @@ module.exports = (app) => {
   // However I am following the instructions
   app.get('/', (req, res) => res.status(200).send({ ok: true }));
   app.post('/api/v1/report', (req, res) => {
-    return reports.queue()
+    return reports.queue(req.body.components)
     .then(() => {
       return res.status(200).send({ message: 'success' });
     })
