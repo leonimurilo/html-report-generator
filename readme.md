@@ -1,1 +1,1 @@
-# RHEA Report generator
+# HTML Report generator
